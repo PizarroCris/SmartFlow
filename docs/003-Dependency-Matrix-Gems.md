@@ -1,8 +1,3 @@
----
-title: Dependency Matrix
-date: 2025-10-19
-tags:
----
 ## Gem List / Dependency Matrix
 
 - **Devise:** The most robust and practical way to create the entire *sign in* and *sign up* system.
