@@ -1,0 +1,16 @@
+class CreateTasks < ActiveRecord::Migration[7.1]
+  def change
+    create_table :tasks do |t|
+      t.string :title, null: false 
+      t.text :description
+      t.integer :status, null: false
+      t.datetime :due_date
+      t.integer :priority
+
+      t.references :user, null: false, foreign_key: true
+      t.references :weekly_goal, null: true, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
