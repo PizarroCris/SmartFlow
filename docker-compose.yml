@@ -1,21 +1,26 @@
 version: '3.8'
 services:
 
-db:
- image: postgres:15
- environment:
- POSTGRES_USER: postgres
- POSTGRES_PASSWORD: password
- volumes:
- - postgres_data:/var/lib/postgresql/data
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      
+  web:
+    build: 
+      context: ./backend 
+    command: bundle exec rails s -b 0.0.0.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/rails
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "postgres://postgres:password@db:5432/smartflow_development"
 
-web:
- build: .
- ports:
- - "3000:3000"
- volumes:
- - .:/rails
- depends_on:
- - db
- environment:
- DATABASE_URL: "postgres://postgres:password@db:5432/smartflow_development"
+volumes:
+  postgres_data:

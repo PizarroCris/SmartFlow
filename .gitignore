@@ -1,19 +1,23 @@
-/config/credentials.yml.enc
-/config/master.key
+# Configuration files
+/backend/config/credentials.yml.enc
+/backend/config/master.key
+
+# Runtime files
+/backend/log/*
+/backend/tmp/*
+/backend/public/assets
+
+# Database files
+/backend/db/*.sqlite3
+/backend/db/*.sqlite3-journal
+/backend/storage/*
+
+# Dependency Caching
+/backend/vendor/bundle/
+
 
 .env
-
-/log/*
-/tmp/*
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/storage/*
-/public/assets
-
-/vendor/bundle/
-
 .DS_Store
-
 .idea/
 *.swp
 *~
