@@ -1,17 +1,17 @@
-class WeeklyGoalPolicy
-  attr_reader :user, :record
-
-  def initialize(user, record)
-    @user = user
-    @record = record
-  end
-
-  def create?
-    user.present? 
-  end
-  
+class WeeklyGoalPolicy < ApplicationPolicy
   def index?
     user.present?
   end
 
+  def create?
+    user.present?
+  end
+
+  def show?
+    record.user_id == user.id
+  end
+
+  def update?
+    record.user_id == user.id
+  end
 end
