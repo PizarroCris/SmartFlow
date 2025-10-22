@@ -8,10 +8,20 @@ class WeeklyGoalPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user_id == user.id
+    owner?
   end
 
   def update?
-    record.user_id == user.id
+    owner?
+  end
+
+  def destroy?
+    owner? 
+  end
+
+  private
+  
+  def owner?
+    record.user_id == user.id 
   end
 end
