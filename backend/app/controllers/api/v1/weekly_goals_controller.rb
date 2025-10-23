@@ -36,11 +36,9 @@ class Api::V1::WeeklyGoalsController < Api::V1::BaseController
   private
 
   def set_weekly_goal
-    # Usar .find_by e levantar a exceção NotAuthorizedError se não for encontrado ou autorizado
     @weekly_goal = current_user.weekly_goals.find(params[:id])
     authorize @weekly_goal
   rescue ActiveRecord::RecordNotFound
-    # Se o current_user não tiver permissão para ver este goal, levanta NotAuthorizedError
     raise Pundit::NotAuthorizedError
   end
 
