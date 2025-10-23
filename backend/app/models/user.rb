@@ -5,7 +5,6 @@ class User < ApplicationRecord
          
   has_many :weekly_goals
   has_many :tasks
-  
-  validates :name, presence: true
+
   validates :email, uniqueness: { case_sensitive: false }
 end

@@ -2,7 +2,7 @@ class Api::V1::BaseController < ActionController::API
   acts_as_token_authentication_handler_for User
   include Pundit
 
-  after_action :verify_authorized
+  after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
   rescue_from Pundit::NotAuthorizedError,   with: :user_not_authorized
