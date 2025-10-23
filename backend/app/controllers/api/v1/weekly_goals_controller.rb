@@ -35,14 +35,9 @@ module Api
       end
 
       def destroy
-
         @weekly_goal = current_user.weekly_goals.find(params[:id])
-
-
         authorize @weekly_goal
-
         @weekly_goal.destroy
-
         head :no_content
       end
 
