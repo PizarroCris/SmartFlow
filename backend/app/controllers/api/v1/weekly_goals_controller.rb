@@ -3,9 +3,11 @@ class Api::V1::WeeklyGoalsController < Api::V1::BaseController
 
   def index
     @weekly_goals = policy_scope(WeeklyGoal)
+    render :index, status: :ok
   end
 
   def show
+    render :show, status: :ok
   end
 
   def create
@@ -20,7 +22,7 @@ class Api::V1::WeeklyGoalsController < Api::V1::BaseController
 
   def update
     if @weekly_goal.update(weekly_goal_params)
-      render :show, status: :ok 
+      render :show, status: :ok
     else
       render json: { errors: @weekly_goal.errors }, status: :unprocessable_entity
     end
@@ -34,10 +36,14 @@ class Api::V1::WeeklyGoalsController < Api::V1::BaseController
   private
 
   def set_weekly_goal
+    # Usar .find_by e levantar a exceção NotAuthorizedError se não for encontrado ou autorizado
     @weekly_goal = current_user.weekly_goals.find(params[:id])
     authorize @weekly_goal
+  rescue ActiveRecord::RecordNotFound
+    # Se o current_user não tiver permissão para ver este goal, levanta NotAuthorizedError
+    raise Pundit::NotAuthorizedError
   end
-  
+
   def weekly_goal_params
     params.require(:weekly_goal).permit(:title, :description, :target_date)
   end
