@@ -245,6 +245,8 @@ GEM
       rspec-support (~> 3.13)
     rspec-support (3.13.6)
     securerandom (0.4.1)
+    shoulda-matchers (6.5.0)
+      activesupport (>= 5.2.0)
     simple_token_authentication (1.18.1)
       actionmailer (>= 3.2.6, < 8)
       actionpack (>= 3.2.6, < 8)
@@ -287,6 +289,7 @@ DEPENDENCIES
   pundit
   rails (~> 7.1.5, >= 7.1.5.2)
   rspec-rails
+  shoulda-matchers
   simple_token_authentication
   tzinfo-data
 

@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :user
-  belongs_to :weekly_goal
+  belongs_to :weekly_goal, optional: true
 
   validates :title, presence: true
   enum status: { incomplete: 0, completed: 1 }
