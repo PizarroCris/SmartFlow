@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :tasks
 
   validates :email, uniqueness: { case_sensitive: false }
+  validates :name, length: { maximum: 20 }
 end
